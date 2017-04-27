@@ -1,0 +1,24 @@
+# main.yaml | ansible-demo
+--- 
+
+- 
+  name: "install packges"
+  package: name="{{ item }}" state=latest
+  with_items: 
+    - screenfetch
+    - htop
+
+- 
+  name: "enable and start sshd service"
+  systemd: 
+    daemon_reload: true
+    enabled: true
+    name: sshd
+    state: started
+
+
+- 
+  name: "install awscli from pip"
+  pip:
+    name=awscli
+
